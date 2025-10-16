@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio Digital Animado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="radio-player">
+    <button id="prevBtn">⏮</button>
+    <button id="playBtn">▶</button>
+    <button id="nextBtn">⏭</button>
+
+    <span id="trackName">Carregando...</span>
+
+    <!-- barra de volume -->
+    <input id="volumeBar" type="range" min="0" max="1" step="0.01" value="0.5">
+
+    <audio id="player" preload="auto"></audio>
+</div>
+
+    <div class="clock" id="clock">
+        <div class="time" id="time">
+            <span class="part" id="hours">00</span><span class="colon">:</span>
+            <span class="part" id="minutes">00</span><span class="colon">:</span>
+            <span class="part" id="seconds">00</span>
+        </div>
+
+        <div class="meta">
+            <div class="ampm" id="ampm">24h</div>
+            <div class="date" id="date">—</div>
+        </div>
+
+        <svg class="svg-ring"viewbox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.08)" stroke-width="6" fill="none"></circle>
+            <circle id="progress" class="ring-circle" cx="50" cy="50" r="40" stroke-width="6" fill="none"></circle>
+            <defs>
+                <linearGradient id="grad" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#ffd166" />
+                     <stop offset="100%" stop-color="#ef471f" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+
+
+        <footer>
+            <p>&copy; 2025 Arthur Barbieri - Todos os direitos reservados.</p>
+        </footer>
+
+    <script src="script.js"></script>
+
+    
+</body>
+</html>

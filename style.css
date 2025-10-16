@@ -1,0 +1,127 @@
+:root {
+    --bg1: #0f2027;
+    --bg2: #2c5364;
+}
+
+
+
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  font-family: Arial, sans-serif;
+  transition: background 1s ease;
+}
+
+
+
+.radio-player button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.radio-player {
+  top: 4%;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  
+  font-size: 20px;
+}
+
+.radio-player input[type="range"] {
+  width: 100px;
+}
+
+
+
+#volumeBar {
+  -webkit-appearance: none; /* Remove o estilo padrão do input */
+  height: 8px; /* Altura da barra */
+  background: #ffffff83; /* Cor de fundo da barra */
+  border-radius: 5px; /* Cantos arredondados */
+  outline: none; /* Remove o contorno ao focar */
+  box-shadow: 0 0px 10px rgba(255, 255, 255, 0.315);
+}
+
+#volumeBar::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove o estilo padrão do thumb */
+  width: 16px; /* Largura do thumb */
+  height: 15px; /* Altura do thumb */
+  border-radius: 50%; /* Tornar o thumb redondo */
+  background: #000000; /* Cor do thumb */
+  cursor: pointer; /* Cursor como ponteiro ao passar sobre o thumb */
+}
+
+
+
+.clock {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.time {
+  font-size: 70px;
+  font-weight: bold;
+  color: white;
+}
+.part {
+  min-width: 2ch;
+  display: inline-block;
+}
+
+.colon {
+  animation: blink 1s step-end infinite;
+}
+
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.meta {
+    color: white;
+    font-size: 1rem;
+}
+
+
+.svg-ring {
+  width: 90px;
+  height: 90px;
+}
+
+.ring-circle {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s linear;
+}
+
+footer {
+  position: fixed;   /* fica fixo na tela */
+  bottom: 10px;      /* distância da borda inferior */
+  left: 50%;         /* centraliza horizontalmente */
+  transform: translateX(-50%);
+  color: white;      /* deixa visível no fundo escuro */
+  font-size: 12px;
+  font-weight: 400;
+}
