@@ -188,6 +188,21 @@ body {
   font-family: 'Arial', monospace;
 }
 
+.text-under-clock {
+font-size: 15px;
+color: rgba(202, 202, 202, 0.842);
+position: absolute;
+  /* deixa o elemento posicionado em relação ao pai */
+  bottom: 140px;
+  /* 20px acima do fundo */
+  left: 50%;
+  /* centraliza horizontalmente */
+  transform: translateX(-50%);
+  /* ajusta pra ficar exatamente centralizado */
+  text-align: center;
+  /* centraliza o texto dentro do elemento */
+}
+
 .part {
   min-width: 2ch;
   display: inline-block;
