@@ -24,7 +24,26 @@ body {
   overflow: hidden;
 }
 
-/* ========== PLAYER DE MÚSICA ATUALIZADO ========== */
+/* ========== PLAYER DE MÚSICA CORRIGIDO ========== */
+.radio-player {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 15px 25px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
 .radio-player button {
   background: rgba(255, 255, 255, 0.1);
   border: none;
@@ -36,6 +55,7 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
 .radio-player button:hover {
@@ -43,32 +63,28 @@ body {
   transform: scale(1.1);
 }
 
-.radio-player {
-  top: 4%;
-  position: absolute;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 15px 25px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+#trackName {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+  min-width: 150px;
+  text-align: center;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 10;
-}
-
-.radio-player input[type="range"] {
-  width: 100px;
+  flex-shrink: 0;
 }
 
 #volumeBar {
   -webkit-appearance: none;
+  width: 100px;
   height: 6px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   outline: none;
   transition: background 0.3s;
+  flex-shrink: 0;
 }
 
 #volumeBar:hover {
@@ -83,18 +99,6 @@ body {
   background: var(--primary);
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-#trackName {
-  font-size: 14px;
-  color: white;
-  font-weight: 600;
-  min-width: 150px;
-  text-align: center;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ========== BARRA DE PESQUISA DE HORÁRIO MUNDIAL ========== */
@@ -189,18 +193,13 @@ body {
 }
 
 .text-under-clock {
-font-size: 15px;
-color: rgba(202, 202, 202, 0.842);
-position: absolute;
-  /* deixa o elemento posicionado em relação ao pai */
+  font-size: 15px;
+  color: rgba(202, 202, 202, 0.842);
+  position: absolute;
   bottom: 140px;
-  /* 20px acima do fundo */
   left: 50%;
-  /* centraliza horizontalmente */
   transform: translateX(-50%);
-  /* ajusta pra ficar exatamente centralizado */
   text-align: center;
-  /* centraliza o texto dentro do elemento */
 }
 
 .part {
@@ -261,4 +260,168 @@ footer {
   font-size: 12px;
   font-weight: 400;
   text-align: center;
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .radio-player {
+    top: 2%;
+    padding: 12px 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .radio-player button {
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+
+  #trackName {
+    font-size: 12px;
+    min-width: 120px;
+    order: -1;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-container {
+    top: 15%;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+  }
+
+  #searchInput {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+
+  #searchBtn,
+  #resetBtn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .clock {
+    flex-direction: column;
+    padding: 25px 30px;
+    gap: 15px;
+    width: 90%;
+    margin-top: 60px;
+  }
+
+  .time {
+    font-size: 48px;
+    text-align: center;
+  }
+
+  .text-under-clock {
+    font-size: 12px;
+    bottom: 120px;
+    width: 90%;
+  }
+
+  .meta {
+    font-size: 1rem;
+  }
+
+  .svg-ring {
+    width: 80px;
+    height: 80px;
+  }
+
+  footer {
+    font-size: 10px;
+    bottom: 10px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .radio-player {
+    padding: 10px 15px;
+    gap: 10px;
+  }
+
+  .radio-player button {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+
+  #trackName {
+    font-size: 11px;
+    min-width: 100px;
+    padding: 6px 12px;
+  }
+
+  #volumeBar {
+    width: 80px;
+  }
+
+  .clock {
+    padding: 20px 25px;
+    margin-top: 80px;
+  }
+
+  .time {
+    font-size: 36px;
+  }
+
+  .text-under-clock {
+    font-size: 11px;
+    bottom: 110px;
+  }
+
+  .meta {
+    font-size: 0.9rem;
+  }
+
+  .svg-ring {
+    width: 60px;
+    height: 60px;
+  }
+
+  #searchInput {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  #searchBtn,
+  #resetBtn {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .time {
+    font-size: 32px;
+  }
+
+  .clock {
+    padding: 15px 20px;
+  }
+
+  .text-under-clock {
+    font-size: 10px;
+    bottom: 100px;
+  }
+
+  .radio-player {
+    padding: 8px 12px;
+  }
+
+  #trackName {
+    font-size: 10px;
+    min-width: 80px;
+  }
 }

@@ -6,6 +6,20 @@ const elAMPM = document.getElementById('ampm');
 const elDate = document.getElementById('date');
 const elProgress = document.getElementById('progress');
 
+// Responsividade
+window.addEventListener('resize', function () {
+    const body = document.body;
+    if (window.innerWidth < 768) {
+        body.style.padding = '20px';
+    } else {
+        body.style.padding = '0';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    window.dispatchEvent(new Event('resize'));
+});
+
 // Configura o círculo
 const R = 40;
 const circumference = 2 * Math.PI * R;
@@ -15,20 +29,17 @@ elProgress.style.strokeDasharray = circumference;
 let use24 = true;
 let currentTimezone = null;
 
-// Função auxiliar: força 2 dígitos
 function two(n) {
     return String(n).padStart(2, '0');
 }
 
-// Função que muda o fundo conforme a hora
 function getGradientForHour(hour) {
-    if (hour >= 6 && hour < 12) return ['#2aa198', '#0a2f6b']; // manhã
-    if (hour >= 12 && hour < 18) return ['#ffd166', '#ef476f']; // tarde
-    if (hour >= 18 && hour < 20) return ['#2b5876', '#4e4376']; // pôr do sol
-    return ['#0f2027', '#2c5364']; // noite
+    if (hour >= 6 && hour < 12) return ['#2aa198', '#0a2f6b'];
+    if (hour >= 12 && hour < 18) return ['#ffd166', '#ef476f'];
+    if (hour >= 18 && hour < 20) return ['#2b5876', '#4e4376'];
+    return ['#0f2027', '#2c5364'];
 }
 
-// Atualiza relógio
 function updateClock() {
     const now = currentTimezone ?
         new Date(new Date().toLocaleString("en-US", { timeZone: currentTimezone.timezone })) :
@@ -50,7 +61,6 @@ function updateClock() {
     elMinutes.textContent = two(m);
     elSeconds.textContent = two(s);
 
-    // data completa
     const fmt = new Intl.DateTimeFormat('pt-BR', {
         weekday: 'long',
         day: 'numeric',
@@ -59,12 +69,10 @@ function updateClock() {
     });
     elDate.textContent = fmt.format(now);
 
-    // muda o fundo
     const [bg1, bg2] = getGradientForHour(now.getHours());
     document.documentElement.style.setProperty('--bg1', bg1);
     document.documentElement.style.setProperty('--bg2', bg2);
 
-    // progresso do anel
     const progress = (s + now.getMilliseconds() / 1000) / 60;
     const offset = circumference * (1 - progress);
     elProgress.style.strokeDashoffset = offset;
@@ -73,7 +81,6 @@ function updateClock() {
 setInterval(updateClock, 250);
 updateClock();
 
-// clique para alternar 12/24h
 document.getElementById('clock').addEventListener('click', () => {
     use24 = !use24;
     updateClock();
@@ -88,7 +95,6 @@ const playlist = [
     { name: "Music 5", src: "audios/musica5.mp3" }
 ];
 
-// Elementos do HTML (PLAYLIST)
 const player = document.getElementById("player");
 const playBtn = document.getElementById("playBtn");
 const prevBtn = document.getElementById("prevBtn");
@@ -99,7 +105,6 @@ const volumeBar = document.getElementById("volumeBar");
 let currentTrack = 0;
 let isPlaying = false;
 
-// Função para carregar musica
 function loadTrack(index) {
     currentTrack = index;
     player.src = playlist[index].src;
@@ -107,7 +112,6 @@ function loadTrack(index) {
     if (isPlaying) player.play();
 }
 
-// Botão play e pause
 playBtn.addEventListener("click", () => {
     if (!isPlaying) {
         player.play();
@@ -119,30 +123,25 @@ playBtn.addEventListener("click", () => {
     isPlaying = !isPlaying;
 });
 
-// Botões proxima e anterior
 nextBtn.addEventListener("click", () => {
     let nextIndex = (currentTrack + 1) % playlist.length;
     loadTrack(nextIndex);
 });
 
-// Musica anterior
 prevBtn.addEventListener("click", () => {
     let prevIndex = (currentTrack - 1 + playlist.length) % playlist.length;
     loadTrack(prevIndex);
 });
 
-// Barra de volume
 volumeBar.addEventListener("input", () => {
     player.volume = volumeBar.value;
 });
 
-// Musica acabou => vai para proxima
 player.addEventListener("ended", () => {
     let nextIndex = (currentTrack + 1) % playlist.length;
     loadTrack(nextIndex);
 });
 
-// volta para a primeira musica
 loadTrack(currentTrack);
 
 // ========== BARRA DE PESQUISA DE HORÁRIO MUNDIAL ==========
@@ -209,7 +208,6 @@ function resetToLocalTime() {
     document.getElementById('resetBtn').style.display = 'none';
 }
 
-// Event listeners para a barra de pesquisa
 document.getElementById('searchBtn').addEventListener('click', searchWorldTime);
 document.getElementById('resetBtn').addEventListener('click', resetToLocalTime);
 
